@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Fatura</title>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.1.1/jspdf.plugin.autotable.min.js"></script>-->
+</head>
+    
+    <script src="preload.js"></script>
+</head>
+
+<body>
+    <div class="tabs">
+        <div class="tab" style="margin-left: 20px;" id="tab1">Gerar Factura</div>
+        <div class="tab" style="margin-left: 10px;" id="tab2">Minha Empresa</div>
+    </div>
+    <div class="tab-content" id="content1">
+        <!-- Conteúdo da Tab 1 -->
+        <div class="container">
+            <div class="form">
+                <h2>Fatura</h2>
+                <form id="clienteForm">
+                    <select id="cliente-lista"></select>
+
+                    <div class="form-item">
+                        <label for="cliente">Cliente</label>
+                        <input type="text" id="cliente" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="endereco">Endereço</label>
+                        <input type="text" id="endereco" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="contacto">Contacto</label>
+                        <input type="text" id="contacto" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="nuit">NUIT</label>
+                        <input type="text" id="nuit" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="data">Data</label>
+                        <input type="date" id="data" required>
+                    </div>
+                    <!-- ... Outros campos do formulário ... -->
+
+
+                </form>
+            </div>
+            <div class="table">
+                <h2>Itens da Fatura</h2>
+                <div class="add-item-form">
+                    <input type="text" id="inputNomeItem" style="width: 55%;" placeholder="Nome do Item" required>
+                    <input type="number" id="inputPreco" oninput="calcularTotalTempoReal()" placeholder="Preço"
+                        required>
+                    <input type="number" id="inputQuantidade" placeholder="Quantidade"
+                        oninput="calcularTotalTempoReal()">
+                    <span id="totalTempoReal"></span>
+                    <button class="btn-adicionar" onclick="adicionarItem()">Adicionar</button>
+                </div>
+                <table id="tabelaItens">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Item</th>
+                            <th>Preço</th>
+                            <th>Qtd</th>
+                            <th>Total</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="itens-tbody">
+                        <!-- Linhas da tabela de itens serão adicionadas dinamicamente aqui -->
+                    </tbody>
+                </table>
+                <div id="somaTotal">
+                    Soma Total: <span id="valorTotal">0.00</span>
+                    <p id="erroMensagem" style="color: red;"></p>
+                </div>
+            </div>
+        </div>
+        <button class="btn-submit" onclick="pdf()" type="submit">Gerar Fatura</button>
+    </div>
+    </div>
+
+    </div>
+    <div class="tab-content" id="content2">
+        <!-- Conteúdo da Tab 2 -->
+        <div class="container">
+            <div class="form">
+                <h2>Minha Empresa</h2>
+                <form id="insertForm">
+                    <div class="form-item">
+                        <label for="cliente">Nome</label>
+                        <input type="text" id="enome" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="endereco">Endereço</label>
+                        <input type="text" id="eendereco" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="contacto">Contacto</label>
+                        <input type="text" id="econtacto" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="nuit">NUIT</label>
+                        <input type="text" id="enuit" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="data">Email</label>
+                        <input type="email" id="eemail" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="data">Logotipo</label>
+                        <input type="file" id="elogo" required>
+                    </div>
+                    <!-- ... Outros campos do formulário ... -->
+    
+                    <a class="btn-submit" id="inserir-Empresa">Salvar</a>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</body>
+<script src="javascript/code.js"></script>
+<script src="pdfgenerator.js"></script>
+<script src="app.js"></script>
+
+
+
+</html>
